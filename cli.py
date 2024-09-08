@@ -25,11 +25,13 @@ def main(file_path, second_file_path, fit, predict, fit_predict, preprocessing):
 
         train_data = pd.read_csv(file_path)
         test_data = pd.read_csv(second_file_path)
-        global_predict, local_predict_data = model.fit_predict(train_data, test_data)
-        click.echo(global_predict)
-        name_local_predict = f"{datetime.now()}-local_predict_model.csv"
+        global_predict_data, local_predict_data = model.fit_predict(train_data, test_data)
+        click.echo(global_predict_data)
+        name_local_predict = f"local_predict_model.csv"
         local_predict_data.to_csv(name_local_predict, index=False)
+        global_predict_data.to_csv('global_predict_model.csv')
         click.echo(f"Local predict data in: {name_local_predict}")
+        click.echo(f"Global predict data in: 'global_predict_model.csv'")
         click.echo("Fit and predict completed. Results saved to 'local_predict_model.csv' and 'global_predict_model.csv'")
 
     elif fit:
