@@ -54,7 +54,7 @@ class AutoGluonModel:
         return predictor.leaderboard()
 
     # Метод для предсказания на локальной модели
-    def predict_local_model(self, data: pd.DataFrame) -> pd.DataFrame:
+    def predict_local_model(self, data: pd.DataFrame, save_path_model: str = 'weights_model') -> pd.DataFrame:
         """
         Загружает сохранённую модель и делает предсказания на новых данных.
         Аргументы:
@@ -63,7 +63,7 @@ class AutoGluonModel:
         Возвращает DataFrame с предсказанным количеством дней до выхода дисков из строя.
         """
         # Загружаем сохранённую модель
-        loaded_predictor = TabularPredictor.load('model/weights_model')
+        loaded_predictor = TabularPredictor.load(save_path_model)
 
         # Сохраняем столбец 'serial_number', затем удаляем ненужные столбцы
         s_number = data['serial_number']
