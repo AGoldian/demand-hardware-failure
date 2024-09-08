@@ -27,6 +27,9 @@ pip install -r requirements.txt
 `python cli.py path/to/folder_data --preprocessing`
 Этот пример запускает процесс обработки данных для модели, используя данные из папки path/to/folder_data, на выходе получаем computing_target_data.csv
 
+### Видео-демонстрация обработки данных
+[![Демонстрация 1](https://img.youtube.com/vi/Ad5VATd7qHU/0.jpg)](https://youtu.be/Ad5VATd7qHU)
+
 ## Обучение модели
 
 `python cli.py path/to/train_data.csv --fit`
@@ -41,6 +44,9 @@ pip install -r requirements.txt
 
 `python cli.py path/to/train_data.csv path/to/test_data.csv --fit_predict`
 Этот пример запускает процесс обучения и предсказания, используя данные из файлов train_data.csv и test_data.csv. Обратите внимание, что для этой операции оба пути к файлам являются обязательными.
+
+### Видео-демонстрация переобучения и прогнозирования данных
+[![Демонстрация 2](https://img.youtube.com/vi/LsC4c8BewZY/0.jpg)](https://youtu.be/LsC4c8BewZY)
 
 ### Пример прогноза локальной модели
 ![img2](https://github.com/AGoldian/demand-hardware-failure/blob/production/src/local_model_output.png?raw=true)
