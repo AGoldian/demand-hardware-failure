@@ -36,6 +36,12 @@ pip install -r requirements.txt
 `python cli.py path/to/train_data.csv path/to/test_data.csv --fit_predict`
 Этот пример запускает процесс обучения и предсказания, используя данные из файлов train_data.csv и test_data.csv. Обратите внимание, что для этой операции оба пути к файлам являются обязательными.
 
+### Пример прогноза локальной модели
+![img2](https://github.com/AGoldian/demand-hardware-failure/tree/production/src/local_model_output.png)
+
+### Пример прогноза глобальной модели
+![img1](https://github.com/AGoldian/demand-hardware-failure/tree/production/src/global_model_output.png)
+
 ## Внутреннее API
 
 ### Модуль stats
