@@ -5,6 +5,8 @@ from model.train import AutoGluonModel
 
 import pandas as pd
 
+from model.utils import compute_targets
+
 
 @click.command()
 @click.argument('file_path', type=click.Path(exists=True))
@@ -12,7 +14,8 @@ import pandas as pd
 @click.option('--fit', is_flag=True, help='Flag to call the fit method')
 @click.option('--predict', is_flag=True, help='Flag to call the predict method')
 @click.option('--fit_predict', is_flag=True, help='Flag to call the fit_predict method')
-def main(file_path, second_file_path, fit, predict, fit_predict):
+@click.option('--preprocessing', is_flag=True, help='Flag to call the preprocessing')
+def main(file_path, second_file_path, fit, predict, fit_predict, preprocessing):
     model = AutoGluonModel()
 
     if fit_predict:
@@ -38,12 +41,16 @@ def main(file_path, second_file_path, fit, predict, fit_predict):
     elif predict:
         test_data = pd.read_csv(file_path)
         local_predict_data = model.predict_local_model(test_data)
-        name_local_predict = f"{datetime.now()}-local_predict_model.csv"
+        name_local_predict = f"local_predict_model.csv"
         local_predict_data.to_csv(name_local_predict, index=False)
         click.echo(f"Local predict data in: {name_local_predict}")
         global_predict_data = model.predict_global_model(local_predict_data)
-        click.echo("Predict completed. Results saved to 'local_predict_model.csv'")
-        click.echo(global_predict_data)
+        global_predict_data.to_csv('global_predict_model.csv')
+        click.echo(f"Global predict data in: global_predict_model")
+
+    elif preprocessing:
+        compute_targets(folder_path=file_path)
+        click.echo("the files have been processed successfully. Look compute_targets.csv")
 
     else:
         click.echo("No valid flag provided. Please use --fit, --predict, or --fit_predict.")
