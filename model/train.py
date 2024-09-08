@@ -63,7 +63,7 @@ class AutoGluonModel:
         Возвращает DataFrame с предсказанным количеством дней до выхода дисков из строя.
         """
         # Загружаем сохранённую модель
-        loaded_predictor = TabularPredictor.load('weights_model')
+        loaded_predictor = TabularPredictor.load('model/weights_model')
 
         # Сохраняем столбец 'serial_number', затем удаляем ненужные столбцы
         s_number = data['serial_number']
@@ -76,7 +76,7 @@ class AutoGluonModel:
         data['predicted_days_to_failure'] = predictions
         data['serial_number'] = s_number
         predict_data = data[['serial_number', 'model', 'capacity_bytes', 'predicted_days_to_failure']]
-
+        predict_data.to_csv('local_predict_model.csv', index=False)
         return predict_data
 
     # Метод для предсказания на глобальном уровне (агрегированные результаты)
