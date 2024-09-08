@@ -52,7 +52,7 @@ def main(file_path, second_file_path, fit, predict, fit_predict, preprocessing):
 
     elif preprocessing:
         compute_targets(folder_path=file_path)
-        click.echo("the files have been processed successfully. Look compute_targets.csv")
+        click.echo("the files have been processed successfully. Look computing_target_data.csv")
 
     else:
         click.echo("No valid flag provided. Please use --fit, --predict, or --fit_predict.")
