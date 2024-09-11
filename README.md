@@ -4,7 +4,7 @@
 
 ![image](https://github.com/user-attachments/assets/a820da9a-67e8-4208-89d0-6763ca28a9f5)
 <img src="https://github.com/user-attachments/assets/a820da9a-67e8-4208-89d0-6763ca28a9f5" alt="image" width="800"/>
-[Смотреть результат](https://hacks-ai.ru/events/1077378)
+[Официальный результат на странице Хакатона](https://hacks-ai.ru/events/1077378)
 
 ## Краткое описание решения
 
