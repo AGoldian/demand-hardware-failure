@@ -13,7 +13,7 @@ def clear_weights_folder(folder_path):
 class AutoGluonModel:
 
     # Метод для обучения модели
-    def fit(self, train_data: pd.DataFrame, save_path_model: str = 'weights_model', time_limit: int = 600, THRESH_NA: float = 0.5) -> pd.DataFrame:
+    def fit(self, train_data: pd.DataFrame, save_path_model: str = 'weights_model', time_limit: int = 30, THRESH_NA: float = 0.5) -> pd.DataFrame:
         """
         Обучает модель с использованием AutoGluon.
         Аргументы:
@@ -54,7 +54,7 @@ class AutoGluonModel:
         return predictor.leaderboard()
 
     # Метод для предсказания на локальной модели
-    def predict_local_model(self, data: pd.DataFrame) -> pd.DataFrame:
+    def predict_local_model(self, data: pd.DataFrame, save_path_model: str = 'weights_model') -> pd.DataFrame:
         """
         Загружает сохранённую модель и делает предсказания на новых данных.
         Аргументы:
@@ -63,7 +63,7 @@ class AutoGluonModel:
         Возвращает DataFrame с предсказанным количеством дней до выхода дисков из строя.
         """
         # Загружаем сохранённую модель
-        loaded_predictor = TabularPredictor.load('model/weights_model')
+        loaded_predictor = TabularPredictor.load(save_path_model)
 
         # Сохраняем столбец 'serial_number', затем удаляем ненужные столбцы
         s_number = data['serial_number']
@@ -146,7 +146,7 @@ class AutoGluonModel:
         print(leaderboard)
 
         # Делаем локальные предсказания
-        local_predict_data = self.predict_local_model(test_data)
+        local_predict_data = self.predict_local_model(test_data, save_path_model=save_path_model)
         local_predict_data.to_csv('local_predict_model.csv', index=False)  # Сохраняем локальные предсказания в CSV
 
         # Делаем глобальные предсказания

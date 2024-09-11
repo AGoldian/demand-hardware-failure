@@ -165,8 +165,11 @@ def compute_targets(folder_path: str, feature_file_path=None):
             # Считываем новый DataFrame
             new_df = pd.read_csv(os.path.join(folder_path, csv_data))
             # Обновляем данные
-            output_new_df = update_features(new_df, output_new_df, is_last_file=is_last_file)
-            output_new_df = update_smart_features(new_df, output_new_df)
+            try:
+                output_new_df = update_features(new_df, output_new_df, is_last_file=is_last_file)
+                output_new_df = update_smart_features(new_df, output_new_df)
+            except:
+                pass
             print(csv_data, 'Обработан')
 
         # Сохраняем промежуточный результат каждые 90 файлов
